@@ -1,0 +1,39 @@
+{
+    "name": "bigraphlanguage",
+    "publisher": "AlessandroCastellani",
+    "displayName": "BigraphLanguage",
+    "description": "Bigraph Language support",
+    "version": "0.1.0",
+    "engines": {
+        "vscode": "^1.33.0"
+    },
+    "categories": [
+        "Programming Languages"
+    ],
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/AlessandroCaste/bigraph-vscode.git"
+    },
+    "contributes": {
+        "languages": [
+            {
+                "id": "bigraph",
+                "aliases": [
+                    "Bigraph",
+                    "bigraph"
+                ],
+                "extensions": [
+                    ".bigraph"
+                ],
+                "configuration": "./language-configuration.json"
+            }
+        ],
+        "grammars": [
+            {
+                "language": "bigraph",
+                "scopeName": "source.bigraph",
+                "path": "./syntaxes/bigraph.tmLanguage.json"
+            }
+        ]
+    }
+}

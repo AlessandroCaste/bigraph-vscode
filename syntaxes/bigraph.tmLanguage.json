@@ -1,0 +1,242 @@
+{
+	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+	"name": "Bigraph",
+	"patterns": [
+		{
+			"include": "#commentsInline"
+		},
+		{
+			"include": "#commentsBlock"
+		},
+		{
+			"include": "#controlStatement"
+		},
+		{
+			"include": "#nameStatement"
+		},
+		{
+			"include": "#ruleStatement"
+		},
+		{
+			"include": "#modelStatement"
+		},
+		{
+			"include": "#propertyStatement"
+		}
+	],
+	"repository": {
+		"commentsInline": {
+			"match": "#.*",
+			"name": "comment.line"
+		},
+		"commentsBlock": {
+			"begin": "\/\\*",
+			"end": "\\*/",
+			"name": "comment.block"
+		},
+		"controlStatement": {
+			"begin": "controls",
+			"beginCaptures": {
+				"0": {
+					"name": "keyword.controls.bigraph"
+				}
+			},
+			"end": "(?=names|rule|model)",
+			"name": "controlblock.bigraph",
+			"patterns": [
+				{
+					"include": "#controls"
+				},
+				{
+					"include": "#commentsInline"
+				},
+				{
+					"include": "#commentsBlock"
+				}
+			]
+		},
+		"controls": {
+			"begin": "(active|passive)",
+			"end": "[0-9]+",
+			"beginCaptures": {
+				"0": {
+					"name": "storage.type.controls.bigraph"
+				}
+			},
+			"patterns": [
+				{
+					"match": "[0-9]+",
+					"name": "constant.numeric.arity.bigraph"
+				},
+				{
+					"match": "\\w+",
+					"name": "control.bigraph"
+				}
+			
+			],
+			"endCaptures": {
+				"0": {
+					"name": "constant.numeric.bigraph"
+				}
+			}
+		},
+		"nameStatement": {
+			"begin": "names",
+			"beginCaptures": {
+				"0": {
+					"name": "keyword.names.bigraph"
+				}
+			},
+			"end": "(?=rule|model|property)",
+			"name": "nameblock.bigraph",
+			"patterns": [
+				{
+					"match": "(inner|outer)",
+					"name": "storage.type.names.bigraph"
+				},				{
+					"match": "\\w+",
+					"name": "name.bigraph"
+				},
+				{
+					"include": "#commentsInline"
+				},
+				{
+					"include": "#commentsBlock"
+				}
+			]
+		},
+		"ruleStatement": {
+			"begin": "(rule)\\s+(\\w+)",
+			"beginCaptures": {
+				"1": {
+					"name": "keyword.rule.bigraph"
+				},
+				"2": {
+					"name": "entity.name.function.rule.bigraph"
+				}
+			},
+			"end": "(?=rule|model)",
+			"patterns": [
+				{
+					"include": "#rulesSymbols"
+				},
+				{
+					"include": "#commentsInline"
+				},
+				{
+					"include": "#commentsBlock"
+				}
+			],
+			"name": "ruleblock.bigraph"
+		},
+		"rulesSymbols": {
+			"patterns": [
+				{
+					"match": "\\-\\>",
+					"name": "entity.name.function.rule.bigraph"
+				},
+				{
+					"match": "[\\. \\| \\|\\|]",
+					"name": "keyword.operator.expressions.bigraph"
+				},
+				{
+					"match": "@\\w+",
+					"name": "variable.parameter.bigraph"
+				},
+				{
+					"match": "\\$\\d+",
+					"name": "variable.parameter.hole.bigraph"
+				},
+				{
+					"match": "\\-",
+					"name": "variable.parameter.unlinked.bigraph"
+				}
+			]
+		},
+		"modelStatement": {
+			"begin": "(model)\\s+(\\w+)",
+			"beginCaptures": {
+				"1": {
+					"name": "keyword.model.bigraph"
+				},
+				"2": {
+					"name": "entity.name.type.model.bigraph"
+				}
+			},
+			"end": "(?=property)",
+			"patterns": [
+				{
+					"include": "#modelSymbols"
+				},
+				{
+					"include": "#commentsInline"
+				},
+				{
+					"include": "#commentsBlock"
+				}
+			],
+			"name": "modelblock.bigraph"
+		},
+		"modelSymbols": {
+			"patterns": [
+				{
+					"match": "[.||-]",
+					"name": "keyword.operator.expressions.bigraph"
+				},
+				{
+					"match": "\\$\\d+",
+					"name": "variable.parameter.hole.bigraph"
+				},
+				{
+					"match": "\\-",
+					"name": "variable.parameter.unlinked.bigraph"
+				}
+			]
+		},
+		"propertyStatement": {
+			"begin": "(property)\\s+(\\w+)",
+			"beginCaptures": {
+				"1": {
+					"name": "keyword.property.bigraph"
+				},
+				"2": {
+					"name": "entity.name.function.property.bigraph"
+				}
+			},
+			"end": "(?=property)",
+			"patterns": [
+				{
+					"include": "#propertySymbols"
+				},
+				{
+					"include": "#commentsInline"
+				},
+				{
+					"include": "#commentsBlock"
+				}
+			],
+			"name": "propertyblock.bigraph"
+		},
+		"propertySymbols": {
+			"patterns": [
+				{
+					"match": "\\-\\>",
+					"name": "entity.name.function.rule.bigraph"
+				},
+				{
+					"match": "(\\&\\&|\\|\\||\\!)",
+					"name": "keyword.operator.booleanlogic.bigraph"
+				},
+				{
+					"match": "(\\w+)(\\()(\\))",
+					"captures": {
+						"1": {
+							"name": "entity.name.function.predicate.bigraph"
+						}
+					}
+				}
+			]
+		}
+	},
+	"scopeName": "source.bigraph"
+}
