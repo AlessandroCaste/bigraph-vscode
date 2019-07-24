@@ -21,7 +21,7 @@
 			"include": "#modelStatement"
 		},
 		{
-			"include": "#propertyStatement"
+			"include": "#markerStatement"
 		}
 	],
 	"repository": {
@@ -87,7 +87,7 @@
 					"name": "keyword.names.bigraph"
 				}
 			},
-			"end": "(?=rule|model|property)",
+			"end": "(?=rule|model|marker)",
 			"name": "nameblock.bigraph",
 			"patterns": [
 				{
@@ -163,7 +163,7 @@
 					"name": "entity.name.type.model.bigraph"
 				}
 			},
-			"end": "(?=property)",
+			"end": "(?=marker)",
 			"patterns": [
 				{
 					"include": "#modelSymbols"
@@ -193,20 +193,20 @@
 				}
 			]
 		},
-		"propertyStatement": {
-			"begin": "(property)\\s+(\\w+)",
+		"markerStatement": {
+			"begin": "(marker)\\s+(\\w+)",
 			"beginCaptures": {
 				"1": {
-					"name": "keyword.property.bigraph"
+					"name": "keyword.marker.bigraph"
 				},
 				"2": {
-					"name": "entity.name.function.property.bigraph"
+					"name": "entity.name.function.marker.bigraph"
 				}
 			},
-			"end": "(?=property)",
+			"end": "(?=marker)",
 			"patterns": [
 				{
-					"include": "#propertySymbols"
+					"include": "#markerSymbols"
 				},
 				{
 					"include": "#commentsInline"
@@ -215,9 +215,9 @@
 					"include": "#commentsBlock"
 				}
 			],
-			"name": "propertyblock.bigraph"
+			"name": "markerblock.bigraph"
 		},
-		"propertySymbols": {
+		"markerSymbols": {
 			"patterns": [
 				{
 					"match": "\\-\\>",
